@@ -1,0 +1,33 @@
+# config.yaml
+# ------------
+# Settings for run_inference.py. Add one entry per model you want to test.
+#
+# This trio covers 3 different companies AND both open + closed models:
+#   - GPT-4o (OpenAI, closed) -- notably, GPT-4o has a well-documented
+#     real-world sycophancy controversy, making it a strong inclusion
+#   - Llama 3.3 70B (Meta, open-weight) -- accessed via Groq, since Meta
+#     doesn't run its own public API
+#   - Gemini 3.5 Flash (Google, closed)
+#
+#   OpenAI: https://platform.openai.com/docs/models
+#   Groq:   https://console.groq.com/docs/models
+#   Google: https://ai.google.dev/gemini-api/docs/models
+
+models:
+  - name: "gpt4o"                   # friendly label used in output filenames
+    provider: "openai"
+    model_id: "gpt-4o"
+
+  - name: "llama3.3_70b"
+    provider: "groq"
+    model_id: "llama-3.3-70b-versatile"
+
+  - name: "gemini"
+    provider: "gemini"
+    model_id: "gemini-3.5-flash"
+
+settings:
+  temperature: 0.0
+  max_tokens: 2000
+  input_csv: "experiment_inputs.csv"
+  output_dir: "inference_results"
